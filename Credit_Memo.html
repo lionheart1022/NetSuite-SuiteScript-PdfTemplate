@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<!DOCTYPE pdf PUBLIC "-//big.faceless.org//report" "report-1.1.dtd">
+<pdf>
+<head>
+<link name="verdana" type="font" subtype="opentype" src="${nsfont.verdana}" src-bold="${nsfont.verdana_bold}" bytes="2"></link>
+<macrolist>
+<macro id="nlheader">
+<table>
+	<tr>
+		<td colspan="1" align="left">
+			<#if companyInformation.logoUrl?length != 0>
+				<img src="${companyInformation.logoUrl}" width="110pt" height="41pt"/>
+			</#if>
+		</td>
+		<td colspan="1" align="left" white-space="nowrap">
+			<#if record.subsidiary.internalid != '18' && record.subsidiary.internalid != '23' && record.subsidiary.internalid != '68' && record.subsidiary.internalid != '70' && record.subsidiary.internalid != '66' && record.subsidiary.internalid != '63' && record.subsidiary.internalid != '26'>
+				${record.subsidiary.custrecord_cv_transaction_form_footer_4}
+			</#if>	
+		</td>
+		<td colspan="2" align="right" white-space="nowrap">
+			${record.custbody_cv_subsidiary_address}
+		</td>
+	</tr>
+	<tr>
+	<td align="right" colspan="4" padding="2px 0px 0px 0px" border-top="1px" border-color="#e3e3e3" margin-top="2px">
+	<span class="number">${record@title?upper_case} #${record.tranid}</span></td>
+	</tr>
+	<tr>
+	<td align="right" colspan="4" padding="0px 0px 0px 0px">${record.trandate}</td>
+	</tr>
+	<tr>
+	<td align="right" colspan="4" padding="0px 0px 0px 0px"><p align="right">Page <pagenumber/> of <totalpages/></p></td>
+	</tr>
+</table>
+</macro>
+<macro id="nlfooter">
+<table>
+	<#if record.subsidiary.internalid != '18' && record.subsidiary.internalid != '28' && record.subsidiary.internalid != '68' && record.subsidiary.internalid != '65' && record.subsidiary.internalid != '27' && record.subsidiary.internalid != '26' && 	 record.subsidiary.internalid != '19' && record.subsidiary.internalid != '67' && record.subsidiary.internalid != '64' && record.subsidiary.internalid != '20'>
+	<tr>
+		<td align="center">${record.subsidiary.custrecord_cv_transaction_form_footer_2}</td>
+	</tr>
+	</#if>
+</table>
+</macro>
+</macrolist>
+<style type="text/css">
+table {
+		<#if .locale == "zh_CN">
+			font-family: stsong, sans-serif;
+        <#elseif .locale == "zh_TW">
+          font-family: msung, sans-serif;
+        <#elseif .locale == "ja_JP">
+          font-family: heiseimin, sans-serif;
+        <#elseif .locale == "ko_KR">
+          font-family: hygothic, sans-serif;
+        <#elseif .locale == "ru_RU">
+          font-family: verdana;
+        <#else>
+          font-family: sans-serif;
+        </#if>
+				font-size: 8pt;
+				table-layout: fixed;
+				width: 100%;
+			}
+			th {
+				font-weight: bold;
+				font-size: 8pt;
+				vertical-align: middle;
+				padding-right: 6px;
+				padding-left: 6px;
+				padding-bottom: 3px;
+				padding-top: 5px;
+				background-color: #e3e3e3;
+				color: #333333;
+			}<!--
+			td {
+				padding-right: 6px;
+				padding-left: 6px;
+				padding-bottom: 4px;
+				padding-top: 4px;
+			}-->
+			b {
+				font-weight: bold;
+				color: #333333;
+			}<!--
+			table.header td {
+				padding: 0px;
+				font-size: 10pt;
+			}
+			table.footer td {
+				padding: 0px;
+				font-size: 8pt;
+			}
+			table.itemtable th {
+				padding-bottom: 10px;
+				padding-top: 10px;
+			}
+			<table.body td {
+				padding-top: 2px;
+			}-->
+			table.total {
+				page-break-inside: avoid;
+			}
+			tr.totalrow {
+				background-color: #e3e3e3;
+				line-height: 200%;
+			}
+			<!--
+			td.addressheader {
+				font-size: 8pt;
+				padding-top: 6px;
+				padding-bottom: 2px;
+			}
+			td.address {
+				padding-top: 0px;
+				border: 1px;
+			}-->
+
+			td.info {
+				padding: 1px 1px 1px 2px;
+			}
+			span.number {
+				font-size: 10pt;
+				font-weight: bold;
+			}
+			span.itemname {
+				font-weight: bold;
+				<!--line-height: 150%;-->
+			}
+			hr {
+				width: 100%;
+				color: #e3e3e3;
+				background-color: #e3e3e3;
+				height: 1px;
+			}</style></head>
+<#if record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA'>
+<body header="nlheader" header-height="116pt" footer="nlfooter" footer-height="30pt" size="A4">
+<#else>
+<body header="nlheader" header-height="116pt" footer="nlfooter" footer-height="30pt">
+</#if>
+<table>
+	<tr border-top="1px" height="15pt">
+	<th colspan="4" border-left="1px"><b>&nbsp;</b></th>
+	<th colspan="4" border-right="1px"><b>&nbsp;</b></th>
+	</tr>
+	<tr border-top="1px" height="75pt">
+	<td colspan="1" border-left="1px" white-space="nowrap"><b>${record.billaddress@label}</b></td>
+	<td colspan="3">${record.billaddress}</td>
+	<td colspan="1" rowspan="2" border-left="1px"><b>${record.shipaddress@label}</b></td>
+	<td colspan="3" rowspan="2" border-right="1px" padding-left="10pt" white-space="nowrap">${record.shipaddress}</td>
+	</tr>
+	<tr>
+	<td colspan="1" border-left="1px"><b>${record.vatregnum@label}</b></td>
+	<td colspan="3">${record.vatregnum}</td>
+	</tr>
+</table>
+<table class="body">
+	<tr border="1px">
+	<th colspan="4" border-left="1px"><b>${record.custbody_cv_invoice_info@label}</b></th>
+	<th colspan="4" border-right="1px"><b>${record.custbody_cv_invoice_payment_info@label}</b></th>
+	</tr>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.currency@label}</b></td>
+	<td class="info" colspan="3">${record.currency}</td>
+	<#if record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA'>
+	<td class="info" colspan="1" <#if record.custbody_cv_deal_type == 'Term'> rowspan="9" <#else> rowspan="8" </#if> border-left="1px" border-bottom="1px" ><b>${record.custbody_cv_bank_details@label}</b></td>
+	<td colspan="3" <#if record.custbody_cv_deal_type == 'Term'> rowspan="9" <#else> rowspan="8" </#if>  border-right="1px" border-bottom="1px" padding-left="10pt">
+	<#else>
+	<td class="info" colspan="1" <#if record.custbody_cv_deal_type == 'Term'> rowspan="8" <#else> rowspan="7" </#if> border-left="1px" border-bottom="1px" ><b>${record.custbody_cv_bank_details@label}</b></td>
+	<td colspan="3" <#if record.custbody_cv_deal_type == 'Term'> rowspan="8" <#else> rowspan="7" </#if>  border-right="1px" border-bottom="1px" padding-left="10pt">
+	</#if>
+	<#if record.subsidiary.internalid == '18' && record.currency == 'Euro'>
+		${record.subsidiary.custrecord_cv_transaction_form_footer_2}
+	<#elseif record.subsidiary.internalid == '18' && record.currency == 'US Dollar'>	
+		${record.subsidiary.custrecord_cv_transaction_form_footer_4}
+	<#elseif record.subsidiary.internalid == '23' && record.currency == 'US Dollar'>	
+		${record.subsidiary.custrecord_cv_transaction_form_footer_4}
+	<#elseif record.subsidiary.internalid == '28' && record.currency == 'Singapore Dollar'>	
+		${record.subsidiary.custrecord_cv_transaction_form_footer_2}
+	<#else> 	
+		${record.subsidiary.custrecord_cv_transaction_form_footer}
+	</#if>
+	</td>
+	</tr>
+	<#if record.custbody_cv_deal_type == 'Term'>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.custbody_tran_term_in_months@label}</b></td>
+	<td class="info" colspan="3">${record.startdate}-${record.enddate}</td>
+	</tr>
+	</#if>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.terms@label}</b></td>
+	<td class="info" colspan="3">${record.terms}</td>
+	</tr>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.duedate@label}</b></td>
+	<td class="info" colspan="1">${record.duedate}</td>
+	</tr>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.otherrefnum@label}</b></td>
+	<td class="info" colspan="3">${record.otherrefnum} ${record.custbody_cv_additional_po_no}</td>
+	</tr>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.custbody_end_user@label}</b></td>
+	<td class="info" colspan="3">${record.custbody_end_user}</td>
+	</tr>
+	<tr>
+	<td class="info" colspan="1" border-left="1px"><b>${record.custbody_cv_ccid@label}</b></td>
+	<td class="info" colspan="3">${record.custbody_cv_ccid}</td>
+	</tr>
+	<#if record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA'>
+	<tr>
+		<td class="info" colspan="1" border-left="1px"><b>${record.salesrep@label}</b></td>
+		<td class="info" colspan="3">${record.salesrep.lastname}, ${record.salesrep.firstname}</td>
+	</tr>
+	<tr>
+		<td class="info" colspan="1" border-left="1px" border-bottom="1px"><b>${record.createdfrom@label}</b></td>
+		<td class="info" colspan="3" border-bottom="1px">${record.createdfrom}</td>
+	</tr>
+	<#else>
+	<tr>
+		<td class="info" colspan="1" border-left="1px" border-bottom="1px"><b>${record.salesrep@label}</b></td>
+		<td class="info" colspan="3" border-bottom="1px">${record.salesrep.lastname}, ${record.salesrep.firstname}</td>
+	</tr>
+	</#if>
+</table>
+<#if record.item?has_content>
+<table class="itemtable"><!-- start items --><#list record.item as item><#if item_index==0>
+<thead margin-top="5px">
+	<tr>
+	<th align="center" colspan="3">${item.quantity@label}</th>
+	<#if record.custbody_cv_deal_type == 'Term'>
+	<th colspan="9">${item.item@label}</th>
+	<th colspan="4">Billing Term</th>
+	<#else>
+	<th colspan="13">${item.item@label}</th>
+	</#if>
+	<th align="right" colspan="4">${item.rate@label}</th>
+	<th align="right" colspan="4">${item.amount@label}</th>
+	</tr>
+</thead>
+</#if>
+	<tr>
+	<td align="center" colspan="3" line-height="150%">
+	<#if record.custbody_cv_deal_type == 'Term'>
+	${item.quantityordered}
+	<#else>
+	${item.quantity}
+	</#if>
+	</td>
+	<#if record.custbody_cv_deal_type == 'Term'>
+	<td colspan="9">
+	<span class="itemname">${item.item}</span><br />
+	${item.description}
+	</td>
+	<td colspan="4">
+	${item.revrecstartdate}-${item.revrecenddate}
+	</td>
+	<#else>
+	<td colspan="13" >
+	<span class="itemname">${item.item}</span><br />
+	${item.description}
+	<#if item.custcol_item_category == 'Maintenance - Renewal' || item.custcol_item_category == 'Maintenance - New' >
+	<br />${item.custcol_swe_contract_start_date} - ${item.custcol_swe_contract_end_date}
+	</#if>
+	</td>
+	</#if>
+	<td align="right" colspan="4">
+	<#if record.custbody_cv_deal_type == 'Term'>
+	${(item.rate*item.quantity)?string("###,##0.00")}
+	<#elseif item.quantity == 0>
+	${(item.rate)?string("###,##0.00")}
+	<#else>
+	${(item.amount/item.quantity)?string("###,##0.00")}</#if>
+	</td>
+	<td align="right" colspan="4">${item.amount?string("###,##0.00")}</td>
+	</tr>
+	</#list><!-- end items -->
+</table>
+<hr />
+</#if>
+
+<#if record.subsidiary.internalid == '21'>
+<table class="total">
+	<tr>
+	<td colspan="4" rowspan="2">${record.message}</td>
+	<td align="right"><b>${record.subtotal@label}</b></td>
+	<td align="right">NIS ${(record.exchangerate * record.subtotal)?string("###,##0.00")}</td>
+	</tr>
+	<tr>
+	<!--<td colspan="4">&nbsp;</td>-->
+	<td align="right"><b>VAT-NIS (${record.custbody_cv_tax_percent}%)</b></td>
+	<td align="right">NIS ${(record.exchangerate * record.taxtotal)?string("###,##0.00")}</td>
+	</tr>
+	<#if record.amountremaining?string != record.total?string>
+	<tr>
+	<#else>
+	<tr class="totalrow">
+	</#if>
+	<td background-color="#ffffff" colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.total@label}</b></td>
+	<td align="right">NIS ${(record.exchangerate * record.total)?string("###,##0.00")}</td>
+	</tr>
+	<#if record.amountremaining?string != record.total?string>
+	<tr class="totalrow">
+	<td background-color="#ffffff" colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.amountremaining@label}</b></td>
+	<td align="right">NIS ${(record.exchangerate * record.amountremaining)?string("###,##0.00")}</td>
+	</tr>
+	</#if>
+	<!--Exchange Rate-->
+	<#if record.subsidiary.internalid == '28' && record.currency != 'Singapore Dollar'>
+	<tr>
+	<td colspan="6" align="right">1 ${record.currency.symbol} = ${record.exchangerate?string("0.00000")} SGD for GST Purposes</td>
+	</tr>
+	<#elseif record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA' && record.exchangerate != 1>
+	<tr>
+	<td colspan="6" align="right">1 ${record.currency.symbol} = ${record.exchangerate?string("0.00000")} ${record.subsidiary.currency}</td>
+	</tr>
+	</#if>
+	<!--Tax Translation-->
+	<#if record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA' && record.exchangerate != 1 && record.taxtotal !=0>
+	<tr>
+	<td colspan="6" align="right">${record.taxtotal@label} ${record.taxtotal?string("###,##0.00")} * ${record.exchangerate?string("0.00000")} = ${(record.exchangerate * record.taxtotal)?string("###,##0.00")} ${record.subsidiary.currency}</td>
+	</tr>
+	</#if>
+</table><br/><br/>
+<table class="total">
+	<tr>
+	<td colspan="4" rowspan="2">${record.message}</td>
+	<td align="right"><b>${record.subtotal@label}</b></td>
+	<td align="right"><#if record.subsidiary.country == 'Israel' || record.subsidiary.internalid == '21'>USD </#if>${record.subtotal?string("###,##0.00")}</td>
+	</tr>
+	<tr>
+	<!--<td colspan="4">&nbsp;</td>-->
+	<td align="right"><b>${record.taxtotal@label} (${record.custbody_cv_tax_percent}%)</b></td>
+	<td align="right"><#if record.subsidiary.country == 'Israel' || record.subsidiary.internalid == '21'>USD </#if>${record.taxtotal?string("###,##0.00")}</td>
+	</tr>
+	<#if record.subsidiary.internalid == '12'>
+	<tr>
+	<td colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.tax2total@label}</b></td>
+	<td align="right">${record.tax2total?string("###,##0.00")}</td>
+	</tr>
+	</#if>
+	<#if record.amountremaining?string != record.total?string>
+	<tr>
+	<#else>
+	<tr class="totalrow">
+	</#if>
+	<td background-color="#ffffff" colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.total@label}</b></td>
+	<td align="right">
+      <#if record.subsidiary.country == 'Israel' || record.subsidiary.internalid == '21'>USD <#else>${record.currency.symbol} </#if>${record.total?string("###,##0.00")}</td>
+	</tr>
+	<#if record.amountremaining?string != record.total?string>
+	<tr class="totalrow">
+	<td background-color="#ffffff" colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.amountremaining@label}</b></td>
+	<td align="right">${record.currency.symbol} ${record.amountremaining?string}</td>
+	</tr>
+	</#if>
+</table>
+<br/>
+<br/>
+<#else>
+<table class="total">
+	<tr>
+	<td colspan="4" rowspan="2">${record.message}</td>
+	<td align="right"><b>${record.subtotal@label}</b></td>
+	<td align="right">${record.subtotal?string("###,##0.00")}</td>
+	</tr>
+	<tr>
+	<!--<td colspan="4">&nbsp;</td>-->
+	<td align="right"><b>${record.taxtotal@label} (${record.custbody_cv_tax_percent}%)</b></td>
+	<td align="right">${record.taxtotal?string("###,##0.00")}</td>
+	</tr>
+	<#if record.subsidiary.internalid == '12'>
+	<tr>
+	<td colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.tax2total@label}</b></td>
+	<td align="right">${record.tax2total?string("###,##0.00")}</td>
+	</tr>
+	</#if>
+	<#if record.amountremaining?string != record.total?string>
+	<tr>
+	<#else>
+	<tr class="totalrow">
+	</#if>
+	<td background-color="#ffffff" colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.total@label}</b></td>
+	<td align="right">${record.currency.symbol} ${record.total?string("###,##0.00")}</td>
+	</tr>
+	<#if record.amountremaining?string != record.total?string>
+	<tr class="totalrow">
+	<td background-color="#ffffff" colspan="4">&nbsp;</td>
+	<td align="right"><b>${record.amountremaining@label}</b></td>
+	<td align="right">${record.currency.symbol} ${record.amountremaining?string}</td>
+	</tr>
+	</#if>
+	<!--Exchange Rate-->
+	<#if record.subsidiary.internalid == '28' && record.currency != 'Singapore Dollar'>
+	<tr>
+	<td colspan="6" align="right">1 ${record.currency.symbol} = ${record.exchangerate?string("0.00000")} SGD for GST Purposes</td>
+	</tr>
+	<#elseif record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA' && record.exchangerate != 1>
+	<tr>
+	<td colspan="6" align="right">1 ${record.currency.symbol} = ${record.exchangerate?string("0.00000")} ${record.subsidiary.currency}</td>
+	</tr>
+	</#if>
+	<!--Tax Translation-->
+	<#if record.subsidiary.custrecord_cv_subsidiary_theater == 'EMEA' && record.exchangerate != 1 && record.taxtotal !=0>
+	<tr>
+	<td colspan="6" align="right">${record.taxtotal@label} ${record.taxtotal?string("###,##0.00")} * ${record.exchangerate?string("0.00000")} = ${(record.exchangerate * record.taxtotal)?string("###,##0.00")} ${record.subsidiary.currency}</td>
+	</tr>
+	</#if>
+</table>
+</#if>
+</body>
+</pdf>
